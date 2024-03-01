@@ -8,7 +8,6 @@ const loadCategories = async () => {
   const data = await response.json();
   const accessApiData = data.data.news_category;
   accessApiData.forEach((singleCategory) => {
-    // console.log(singleItem.category_name);
     const newBtn = document.createElement("button");
     newBtn.className =
       "bg-indigo-200 hover:text-white hover:bg-indigo-400 duration-300 text-black max-sm:px-2 px-5 py-2 cursor-pointer rounded-lg";
@@ -24,16 +23,18 @@ const loadNews = async () => {
   const newsData = data.data;
   newsData.forEach((singleNews) => {
     console.log(singleNews);
+
+    //   card card-side
     const newDiv = document.createElement("div");
     newDiv.innerHTML = `
-        <div class="card max-sm:w-auto w-[700px]  card-side bg-base-100 shadow-md">
-            <figure><img class='p-4' src="${
-              singleNews?.thumbnail_url
-            }" alt="Movie"/></figure>
-            <div class="card-body">
-                <div class='flex'>
+        <div class=" max-sm:w-auto max-w-[800px] flex max-sm:flex-col bg-base-100 shadow-md border">
+            <div class='flex items-center justify-center'>
+              <img class='p-4' src="${singleNews?.thumbnail_url}" alt="Movie"/>
+            </div>
+            <div class="card-body w-[550px]">
+                <div class='flex max-sm:flex-col'>
                     <h2 class="card-title">${singleNews?.title}</h2>
-                    <div>
+                    <div class='text-center'>
                         <p>${singleNews?.rating?.badge}</p>
                         <p>${singleNews?.rating?.number}</p>
                     </div>
@@ -42,7 +43,7 @@ const loadNews = async () => {
                   0,
                   180
                 )}.....<span class='text-[14px]'>see more</span></p>
-                <div class='flex max-sm:flex-col max-sm:gap-5 justify-between mt-4'>
+                <div class='flex max-sm:flex-col max-sm:gap-5 items-center justify-between mt-4'>
                     <div class="flex items-center">
                         <div>
                         <img class='p-4 w-20 object-cover rounded-full' src="${
@@ -52,13 +53,16 @@ const loadNews = async () => {
                         <div>
                         <p>Name : ${singleNews?.author?.name}</p>
                         <p>Date : ${singleNews?.author?.published_date}</p>
+                        
                         </div>
                     </div>
-                    <div class="">
-                        <button class="btn btn-primary">Watch</button>
+                    <div class="flex items-center">
+                    <i class="fa-solid fa-eye mr-2"></i> <p>${
+                      singleNews?.total_view
+                    }</p>
                     </div>
                     <div class="">
-                        <button class="btn btn-primary">Watch</button>
+                        <button class="bg-indigo-500 font-medium hover:bg-indigo-600 duration-300 text-white max-sm:px-4 max-sm:py-2 px-6 py-2 cursor-pointer rounded-lg">Details</button>
                     </div>
                 </div>
             </div>
