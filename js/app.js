@@ -26,7 +26,6 @@ const loadNews = async (catId) => {
   const data = await response.json();
   const newsData = data.data;
   CardContainerEl.innerHTML = "";
-  console.log(newsData);
   newsData.forEach((singleNews) => {
     if (newsData.length === 0) {
       alert("hello");
@@ -78,6 +77,15 @@ const loadNews = async (catId) => {
       `;
     CardContainerEl.appendChild(newDiv);
   });
+};
+
+const handleSearch = () => {
+  const value = document.getElementById("search-box").value;
+  if (value) {
+    loadNews(value);
+  } else {
+    alert("Please valid catID");
+  }
 };
 
 loadNews("01");
